@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --color-forest-950: #0a2419;
+  --color-forest-900: #123d2b;
+  --color-forest-800: #18503a;
+  --color-forest-700: #1f6449;
+  --color-mint-50: #f3faf6;
+  --color-mint-100: #e4f4ea;
+  --color-mint-200: #c9e8d5;
+  --color-charcoal: #1c2421;
+  --color-slate-muted: #5b6862;
+  --shadow-card: 0 1px 2px #10281e0a, 0 8px 24px -12px #10281e1f;
+  --shadow-lift: 0 2px 4px #10281e0d, 0 18px 40px -18px #10281e47;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background: #fff;
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+.bg-grid {
+  background-image: radial-gradient(#123d2b1f 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: var(--color-mint-50);
+}
+
+.leaflet-bar {
+  overflow: hidden;
+  border: 1px solid var(--color-mint-200) !important;
+  box-shadow: var(--shadow-card) !important;
+  border-radius: 10px !important;
+}
+
+.eco-marker {
+  background: none;
+  border: none;
+}
