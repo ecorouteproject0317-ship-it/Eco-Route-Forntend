@@ -19,6 +19,9 @@ export default function Home() {
         vehicle: payload.vehicle,
       });
       sessionStorage.setItem("ecoroute-plan", JSON.stringify(plan));
+      api
+        .recordTrip({ origin: plan.origin, destination: plan.destination, vehicle: plan.vehicle })
+        .catch(() => {});
       navigate("/results");
     } catch (err) {
       setError(err.message);

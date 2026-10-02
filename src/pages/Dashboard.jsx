@@ -10,6 +10,7 @@ export default function Dashboard() {
 
   async function load() {
     try {
+      setError("");
       setData(await api.dashboard());
     } catch (err) {
       setError(err.message);
@@ -21,18 +22,28 @@ export default function Dashboard() {
   }, []);
 
   async function replay(item) {
-    const plan = await api.plan({
-      origin: item.origin,
-      destination: item.destination,
-      vehicle: item.vehicle || "petrol",
-    });
-    sessionStorage.setItem("ecoroute-plan", JSON.stringify(plan));
-    navigate("/results");
+    setError("");
+    try {
+      const plan = await api.plan({
+        origin: item.origin,
+        destination: item.destination,
+        vehicle: item.vehicle || "petrol",
+      });
+      sessionStorage.setItem("ecoroute-plan", JSON.stringify(plan));
+      navigate("/results");
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   async function remove(id) {
-    await api.deleteJourney(id);
-    load();
+    setError("");
+    try {
+      await api.deleteJourney(id);
+      load();
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   return (

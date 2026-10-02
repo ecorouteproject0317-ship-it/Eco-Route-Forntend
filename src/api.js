@@ -11,8 +11,10 @@ export function deviceId() {
 
 const base = import.meta.env.VITE_API_URL || "";
 
-async function request(path, options = {}) {
-  const res = await fetch(`${base}${path}`, {
+// Journey history lives in this site's own Netlify Functions, so it always
+// uses the same origin even when routing is served by an external API.
+async function request(path, options = {}, origin = base) {
+  const res = await fetch(`${origin}${path}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -29,8 +31,9 @@ async function request(path, options = {}) {
 export const api = {
   places: (q) => request(`/api/places?q=${encodeURIComponent(q)}`),
   plan: (body) => request("/api/plan", { method: "POST", body: JSON.stringify(body) }),
-  journeys: () => request("/api/journeys"),
-  saveJourney: (body) => request("/api/journeys", { method: "POST", body: JSON.stringify(body) }),
-  deleteJourney: (id) => request(`/api/journeys/${id}`, { method: "DELETE" }),
-  dashboard: () => request("/api/dashboard"),
+  journeys: () => request("/api/journeys", {}, ""),
+  saveJourney: (body) => request("/api/journeys", { method: "POST", body: JSON.stringify(body) }, ""),
+  deleteJourney: (id) => request(`/api/journeys/${id}`, { method: "DELETE" }, ""),
+  recordTrip: (body) => request("/api/trips", { method: "POST", body: JSON.stringify(body) }, ""),
+  dashboard: () => request("/api/dashboard", {}, ""),
 };
