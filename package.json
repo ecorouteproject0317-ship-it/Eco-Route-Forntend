@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@netlify/database": "^2.0.1",
+    "@netlify/functions": "^6.0.2",
+    "drizzle-orm": "^1.0.0-beta.22",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.544.0",
     "react": "^19.1.1",
@@ -19,7 +22,9 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.13",
     "@vitejs/plugin-react": "^5.0.2",
+    "drizzle-kit": "^1.0.0-beta.22",
     "tailwindcss": "^4.1.13",
+    "typescript": "^7.0.2",
     "vite": "^7.1.5"
   }
 }
